@@ -5,7 +5,7 @@ class TCPSender{
         try{Socket socket = new Socket("127.0.0.1",4322);
             PrintWriter out = new PrintWriter(socket.getOutputStream());
             for(int i=0;i<10;i++){
-                out.println("TCP message "+i); //out.flush();
+                out.println("TCP message "+i); out.flush();
                 System.out.println("TCP message "+i+" sent");
                 Thread.sleep(1000);
             }
