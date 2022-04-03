@@ -9,10 +9,8 @@ class UDPSender{
             InetAddress address =
                     InetAddress.getByName("127.0.0.1");
             DatagramSocket socket = new DatagramSocket();
-//            Random random = new Random();
-//            int a = random.nextInt(10);
             for(int i=0;i<10;i++){
-                byte[] buf = String.valueOf(i+" Test"/*+a*/).getBytes();
+                byte[] buf = String.valueOf(i+" Test").getBytes();
                 DatagramPacket packet =
                         new DatagramPacket(buf, buf.length, address, 4321);
                 socket.send(packet);
