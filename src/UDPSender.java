@@ -22,6 +22,9 @@ class UDPSender{
                 UDPSender sender = new UDPSender();
                 DatagramPacket response = new DatagramPacket(buf,buf.length);
                 socket.receive(response);
+                /**
+                 * Waits until it receives an acknowledgement for the sent package
+                 */
                 while(sender.getResponse(socket,response,String.valueOf(i))){
                     response = new DatagramPacket(buf,buf.length);
                     socket.receive(response);
@@ -31,6 +34,13 @@ class UDPSender{
         }catch(Exception e){System.out.println("error");}
     }
 
+    /**
+     * Parses the response it receives from the Server that it has acknowledged the incoming packet
+     * @param socket is the used socket opened for the communication
+     * @param packet is the response received
+     * @param id is the id that is acknowledged
+     * @return true if the last package sent is acknowledged by the server
+     */
     private boolean getResponse(DatagramSocket socket,DatagramPacket packet,String id){
         byte[] buf = new byte[256];
         System.out.println("GOT RESPONSE");

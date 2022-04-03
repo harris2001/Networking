@@ -14,11 +14,24 @@ class UDPReceiver{
                         + packet.getAddress() + ":"
                         + packet.getPort());
                 UDPReceiver receiver = new UDPReceiver();
-                receiver.sendResponse(socket,packetId,packet.getAddress(),packet.getPort());
+                /**
+                 * By uncommenting it you expect UDP server to send an acknowledgement
+                 * after receving a message
+                 */
+                //receiver.sendResponse(socket,packetId,packet.getAddress(),packet.getPort());
 
             }
         } catch(Exception e){System.out.println("error "+e);}
     }
+
+    /**
+     * Used to send acknowledgements after receiving a packet
+     * => If a packet is lost => the connection is dropped
+     * @param socket is the used socket opened for the communication
+     * @param packetId is the id of the packet we send and acknowledgement for
+     * @param address the connected address (localhost)
+     * @param port the port used for the communication
+     */
     private void sendResponse(DatagramSocket socket, String packetId,InetAddress address, int port){
         try {
             System.out.println("PacketId: "+packetId);
